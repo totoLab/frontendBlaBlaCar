@@ -15,16 +15,21 @@ export class AdsListComponent {
   constructor(private adService: AdService) {}
 
   ngOnInit() {
+    this.ads = []
+    this.update()
+  }
+  
+  reload() {
+    this.update()
+  }
+  
+  update() {
     this.adsSignal = this.adService.getAdsSignal();
     const searchData = this.adService.getSearchData();
     
     this.adService.searchAds(searchData).subscribe((ads) => {
       this.ads = ads;
     });
-  }
-
-  reload() {
-    this.ngOnInit()
   }
 
 }
