@@ -15,15 +15,24 @@ export class AdService {
 
   adsObserver!:Observable<Ad[]>
   adsSignal: WritableSignal<Ad[]> = signal([]);
+  private searchData: any;
 
   constructor(private http: HttpClient) { }
 
-  getAds(): Observable<Ad[]> {
+  setSearchData(searchData: any) {
+    this.searchData = searchData;
+  }
+
+  getSearchData() {
+    return this.searchData
+  }
+
+  searchAds(searchData: any): Observable<Ad[]> {
     this.adsSignal.set([]);
-    this.adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/ads`);
-    this.adsObserver.subscribe((response) => {
+    const adsObserver = this.http.post<Ad[]>(`${this.apiUrl}/ads`, searchData);
+    adsObserver.subscribe((response) => {
       this.adsSignal.set(response);
     });
-    return this.adsObserver;
+    return adsObserver;
   }
 }

@@ -14,9 +14,12 @@ export class HomeComponent {
 
   constructor(private adsService: AdService, private router: Router) {}
 
-  searchAds(searchForm: NgForm) {
-    if (searchForm.valid) this.redirectFunction("ads")
-    else alert("Compila il form")
+  searchAds(form: NgForm) {
+    if (form.valid) {
+      const searchData = form.value;
+      this.adsService.setSearchData(searchData);        // what's missing?
+      this.redirectFunction("ads");
+    }
   }
 
   redirectFunction(page: String){

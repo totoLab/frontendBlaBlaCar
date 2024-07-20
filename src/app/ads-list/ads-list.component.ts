@@ -15,28 +15,16 @@ export class AdsListComponent {
   constructor(private adService: AdService) {}
 
   ngOnInit() {
-    this.updateAds();  
+    this.adsSignal = this.adService.getAdsSignal();
+    const searchData = this.adService.getSearchData();
+    
+    this.adService.searchAds(searchData).subscribe((ads) => {
+      this.ads = ads;
+    });
   }
 
   reload() {
-    this.updateAds();  
-  }
-
-  updateAds() {
-    this.allAds()
-    
-  }
-
-  allAds() {
-    this.adsSignal = this.adService.getAdsSignal();
-    this.adService.getAds().subscribe(
-      (data) => {
-        this.ads = data;
-      },
-      (error) => {
-        console.error('Error fetching ads:', error);
-      }
-    );
+    this.ngOnInit()
   }
 
 }
