@@ -1,0 +1,18 @@
+<header></header>
+<div>
+  <div *ngIf="ads.length > 0" class="ads-container">
+    <h2>Available Ads</h2>
+    <ul class="ad-list">
+      <li class="ad-box" *ngFor="let ad of ads">
+        <p class="ad-date">{{ ad["date"] }}</p>
+        <p class="ad-route">
+          {{ ad["departureCity"] }} {{ ad["departureTime"] }} &rarr; {{ ad["arrivalCity"] }} {{ ad["arrivalTime"] }}
+        </p>
+        <p class="ad-car">{{ ad["car"] }}</p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="ads.length === 0">
+    <p>No ads available.</p>
+  </div>
+</div>

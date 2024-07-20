@@ -1,0 +1,62 @@
+.ads-container {
+  border: 1px solid #ddd; /* Light grey border */
+  padding: 20px; /* Add padding inside the container */
+  margin: 20px auto; /* Center the container with auto margins */
+  max-width: 600px; /* Constrain the width of the container */
+  border-radius: 8px; /* Add rounded corners */
+  background-color: #fff; /* White background for better contrast */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+/* Remove default list styling and padding */
+.ad-list {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.ad-box {
+  border: 1px solid #ddd; /* Light grey border */
+  padding: 15px; /* Add more padding for better spacing */
+  margin: 15px 0; /* Add more margin for better separation between ads */
+  border-radius: 8px; /* Add rounded corners */
+  background-color: #f7f7f7; /* Light background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+.ad-box p {
+  margin: 5px 0; /* Add margin between paragraphs */
+  font-size: 16px; /* Set a comfortable font size */
+  color: #333; /* Dark grey text color for better readability */
+}
+
+.ad-date {
+  font-weight: bold; /* Make date bold */
+  font-size: 18px; /* Slightly larger font size for date */
+}
+
+.ad-route {
+  font-size: 16px; /* Comfortable font size for route */
+  color: #555; /* Medium grey text color for route */
+}
+
+.ad-car {
+  font-size: 14px; /* Smaller font size for car */
+  color: #777; /* Lighter grey text color for car */
+  margin-top: 5px; /* Add some margin above car information */
+}
+
+button {
+  background-color: #007bff; /* Blue background color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding for button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for button */
+  margin-bottom: 20px; /* Margin below button */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
