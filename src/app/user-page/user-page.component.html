@@ -1,0 +1,13 @@
+<app-header/>
+<div *ngIf="user; else notfound" class="user-container">
+      <h1>User page</h1>
+      <h2>Ciao, {{user.username}}</h2>
+      <p>Name: {{user.name}}</p>
+      <p>Surname: {{user.surname}}</p>
+      <p>Email: {{user.email}}</p>
+    </div>
+    <ng-template #notfound>
+      <div class="notfound-container">
+        <p>Can't retrieve user data...</p>
+      </div>
+    </ng-template>
