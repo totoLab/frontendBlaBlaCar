@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isAuthenticated: boolean = false; 
+  isAuthenticated: boolean = true; 
 
   login() {
     // Logic for login action
