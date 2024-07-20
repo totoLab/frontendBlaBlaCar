@@ -15,7 +15,7 @@ export class AdService {
 
   getAds(): Observable<Ad[]> {
     this.adsSignal.set([]);
-    const adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/ads/all`);
+    const adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/ads`);
     adsObserver.subscribe((response) => {
       this.adsSignal.set(response);
     });
