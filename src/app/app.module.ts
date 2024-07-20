@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { AdsListComponent } from './ads-list/ads-list.component';
+import { AdsListPageComponent } from './ads-list-page/ads-list-page.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdsListComponent, HeaderComponent],
+  declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
