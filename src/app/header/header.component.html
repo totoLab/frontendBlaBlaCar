@@ -9,7 +9,9 @@
     </a>
     <div class="auth-container">
       <ng-container *ngIf="isAuthenticated; else notAuthenticated">
-        <img src="assets/propic.png" alt="Profile Photo" class="profile-photo"/>
+        <a href="/users/{{username}}">
+          <img src="assets/propic.png" alt="Profile Photo" class="profile-photo"/>
+        </a>
       </ng-container>
       <ng-template #notAuthenticated>
         <button class="auth-button" (click)="login()">Login</button>
