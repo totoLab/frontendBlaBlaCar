@@ -9,16 +9,21 @@ import { Ad } from './Ad';
 export class AdService {
   private apiUrl = 'http://localhost:8081';
   
+  getAdsSignal(): WritableSignal<Ad[]> {
+    return this.adsSignal;
+  }
+
+  adsObserver!:Observable<Ad[]>
   adsSignal: WritableSignal<Ad[]> = signal([]);
 
   constructor(private http: HttpClient) { }
 
   getAds(): Observable<Ad[]> {
     this.adsSignal.set([]);
-    const adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/ads`);
-    adsObserver.subscribe((response) => {
+    this.adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/ads`);
+    this.adsObserver.subscribe((response) => {
       this.adsSignal.set(response);
     });
-    return adsObserver;
+    return this.adsObserver;
   }
 }

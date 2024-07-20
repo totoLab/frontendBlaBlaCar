@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { AdService } from '../services/ads-service.service';
+import { Ad } from '../services/Ad';
 
 @Component({
   selector: 'app-ads-list',
@@ -7,15 +9,34 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './ads-list.component.css'
 })
 export class AdsListComponent {
-  ads = []
+  adsSignal! : WritableSignal<Ad[]>;
+  ads!: Ad[];
+  
+  constructor(private adService: AdService) {}
 
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state) {
-      this.ads = navigation.extras.state['data'];
-    }
+  ngOnInit() {
+    this.updateAds();  
   }
 
-  ngOnInit(): void {}
+  reload() {
+    this.updateAds();  
+  }
+
+  updateAds() {
+    this.allAds()
+    
+  }
+
+  allAds() {
+    this.adsSignal = this.adService.getAdsSignal();
+    this.adService.getAds().subscribe(
+      (data) => {
+        this.ads = data;
+      },
+      (error) => {
+        console.error('Error fetching ads:', error);
+      }
+    );
+  }
 
 }
