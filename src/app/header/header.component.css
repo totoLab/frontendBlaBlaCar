@@ -1,0 +1,54 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo-container {
+    flex: 1;
+  }
+  
+  .logo {
+    height: 40px; /* Adjust size as needed */
+  }
+  
+  .site-name {
+    flex: 2;
+    text-align: center;
+  }
+  
+  .site-name h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .auth-container {
+    flex: 1;
+    text-align: right;
+  }
+  
+  .profile-photo {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .auth-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .auth-button:hover {
+    background-color: #0056b3;
+  }
+  
