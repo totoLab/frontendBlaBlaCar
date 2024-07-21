@@ -1,26 +1,38 @@
 <div>
-  <div *ngIf="ads.length > 0" class="ads-container">
-    <h2>{{ title }}</h2>
-    <ul class="ad-list">
-      <li class="ad-box" *ngFor="let ad of ads">
-        <p class="ad-date">{{ ad["date"] }}</p>
-        <p class="ad-route">
-          {{ ad["departureCity"] }} {{ ad["departureTime"] }} &rarr; {{ ad["arrivalCity"] }} {{ ad["arrivalTime"] }}
-        </p>
-        <p class="ad-car">{{ ad["car"] }}</p>
-        <div *ngIf="ad.isPublished">
-          <button>Remove ad</button>
-        </div>
-        <div *ngIf="!ad.isPublished && !ad.isBooking && !ad.isBooked">
-          <button>Book a ride</button>
-        </div>
-        <div *ngIf="ad.isBooking && ad.isBooked">
-          <button>Remove booking</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div *ngIf="ads.length === 0">
-    <h2>No ads available.</h2>
+  <div *ngIf="ads">
+    <div *ngIf="ads.length > 0" class="ads-container">
+      <h2>{{ title }}</h2>
+      <ul class="ad-list">
+        <li class="ad-box" *ngFor="let ad of ads">
+          <p class="ad-date">{{ ad["date"] }}</p>
+          <div class="ad-route">
+            <div class="city-time">
+              <span class="city">{{ ad["departureCity"] }}</span>
+              <span class="time">{{ ad["departureTime"] }}</span>
+            </div>
+            <div class="route-line">
+              <div class="line"></div>
+              <p class="ad-car">{{ ad["car"] }}</p>
+            </div>
+            <div class="city-time">
+              <span class="city">{{ ad["arrivalCity"] }}</span>
+              <span class="time">{{ ad["arrivalTime"] }}</span>
+            </div>
+          </div>
+          <div *ngIf="ad.isPublished">
+            <button>Remove ad</button>
+          </div>
+          <div *ngIf="!ad.isPublished && !ad.isBooking && !ad.isBooked">
+            <button>Book a ride</button>
+          </div>
+          <div *ngIf="ad.isBooking && ad.isBooked">
+            <button>Remove booking</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="ads.length === 0">
+      <h2>No ads available.</h2>
+    </div>
   </div>
 </div>
