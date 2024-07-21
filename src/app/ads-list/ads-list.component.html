@@ -1,7 +1,7 @@
 <div>
   <div *ngIf="ads">
+    <h2>{{ title }}</h2>
     <div *ngIf="ads.length > 0" class="ads-container">
-      <h2>{{ title }}</h2>
       <ul class="ad-list">
         <li class="ad-box" *ngFor="let ad of ads">
           <p class="ad-date">{{ ad["date"] }}</p>
@@ -32,7 +32,7 @@
       </ul>
     </div>
     <div *ngIf="ads.length === 0">
-      <h2>No ads available.</h2>
+      <p>No ads available.</p>
     </div>
   </div>
 </div>
