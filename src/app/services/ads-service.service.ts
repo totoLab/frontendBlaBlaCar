@@ -35,4 +35,13 @@ export class AdService {
     });
     return adsObserver;
   }
+
+  searchUserAds(username: any): Observable<Ad[]> {
+    this.adsSignal.set([]);
+    const adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/users/${username}/ads`);
+    adsObserver.subscribe((response) => {
+      this.adsSignal.set(response);
+    });
+    return adsObserver;
+  }
 }
