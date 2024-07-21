@@ -5,8 +5,8 @@
       <p>Name: {{user.name}}</p>
       <p>Surname: {{user.surname}}</p>
       <p>Email: {{user.email}}</p>
+      <app-ads-list [ads]="userAds"/>
     </div>
-    <app-ads-list [ads]="userAds"/>
     <ng-template #notfound>
       <div class="notfound-container">
         <p>Can't retrieve user data...</p>
