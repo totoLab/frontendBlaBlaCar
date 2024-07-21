@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ad } from './Ad';
+import { Booking } from './Booking';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,17 @@ import { Ad } from './Ad';
 export class AdService {
   private apiUrl = 'http://localhost:8081';
   
-  getAdsSignal(): WritableSignal<Ad[]> {
-    return this.adsSignal;
-  }
-
+  constructor(private http: HttpClient) { }
+  
+  // Ads related
+  
   adsObserver!:Observable<Ad[]>
   adsSignal: WritableSignal<Ad[]> = signal([]);
   private searchData: any;
-
-  constructor(private http: HttpClient) { }
+  
+  getAdsSignal(): WritableSignal<Ad[]> {
+    return this.adsSignal;
+  }
 
   setSearchData(searchData: any) {
     this.searchData = searchData;
@@ -43,5 +46,23 @@ export class AdService {
       this.adsSignal.set(response);
     });
     return adsObserver;
+  }
+
+  // Bookings related
+
+  bookingsObserver!:Observable<Booking[]>
+  bookingsSignal: WritableSignal<Booking[]> = signal([]);
+
+  getBookingsSignal(): WritableSignal<Booking[]> {
+    return this.bookingsSignal;
+  }
+
+  searchUserBookings(username: any): Observable<Booking[]> {
+    this.bookingsSignal.set([]);
+    const bookingsObserver = this.http.get<Booking[]>(`${this.apiUrl}/users/${username}/bookings`);
+    bookingsObserver.subscribe((response) => {
+      this.bookingsSignal.set(response);
+    });
+    return bookingsObserver;
   }
 }

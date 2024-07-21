@@ -5,7 +5,8 @@
       <p>Name: {{user.name}}</p>
       <p>Surname: {{user.surname}}</p>
       <p>Email: {{user.email}}</p>
-      <app-ads-list [title]="title" [ads]="userAds"/>
+      <app-ads-list id="published" [title]="publishedTitle" [ads]="userAds"/>
+      <app-ads-list id="booked" [title]="bookedTitle" [ads]="userBookings"/>
     </div>
     <ng-template #notfound>
       <div class="notfound-container">

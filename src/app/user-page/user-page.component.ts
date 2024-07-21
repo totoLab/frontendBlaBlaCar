@@ -4,6 +4,7 @@ import { User } from '../services/User';
 import { UsersService } from '../services/users.service';
 import { AdService } from '../services/ads-service.service';
 import { Ad } from '../services/Ad';
+import { Booking } from '../services/Booking';
 
 @Component({
   selector: 'app-user-page',
@@ -25,8 +26,9 @@ export class UserPageComponent {
   user!: User;
   
   ngOnInit() {
-    this.getUserAds()
     this.getUserInfo()
+    this.getUserAds()
+    this.getUserBookings();
   }
   
   reload() {
@@ -40,13 +42,26 @@ export class UserPageComponent {
     this.usersService.searchUser(this.username);
   }
   
-  title = "Published by user"
+  publishedTitle = "Published by user"
   adsSignal! : WritableSignal<Ad[]>;
   userAds!: Ad[];
   getUserAds() {
     this.adsSignal = this.adService.getAdsSignal();
     this.adService.searchUserAds(this.username).subscribe((ads) => {
       this.userAds = ads;
+    });
+  }
+
+  bookedTitle = 'Booked by user'
+  bookingsSignal! : WritableSignal<Booking[]>;
+  userBookings!: Ad[];
+  getUserBookings() {
+    this.bookingsSignal = this.adService.getBookingsSignal();
+    this.adService.searchUserBookings(this.username).subscribe((bookings) => {
+      this.userBookings = []
+      bookings.forEach((booking) => {
+        this.userBookings.push(booking.ad);
+      });
     });
   }
 }
