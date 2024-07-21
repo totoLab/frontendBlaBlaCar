@@ -9,7 +9,7 @@ import { Ad } from '../services/Ad';
   styleUrl: './ads-list-page.component.css'
 })
 export class AdsListPageComponent {
-
+  title = 'Available ads'
   adsSignal! : WritableSignal<Ad[]>;
   ads!: Ad[];
   

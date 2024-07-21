@@ -12,4 +12,6 @@ export class AdsListComponent {
   @Input() 
     ads!: Ad[];
 
+  @Input()
+    title!: String;
 }

@@ -23,26 +23,26 @@ export class UserPageComponent {
 
   usersSignal!: WritableSignal<User>;
   user!: User;
-
-  adsSignal! : WritableSignal<Ad[]>;
-  userAds!: Ad[];
-
+  
   ngOnInit() {
     this.getUserAds()
     this.getUserInfo()
   }
-
+  
   reload() {
     this.ngOnInit()
   }
-
+  
   getUserInfo() {
     this.usersService.user$.subscribe((user) => {
       this.user = user;
     });
     this.usersService.searchUser(this.username);
   }
-
+  
+  title = "Published by user"
+  adsSignal! : WritableSignal<Ad[]>;
+  userAds!: Ad[];
   getUserAds() {
     this.adsSignal = this.adService.getAdsSignal();
     this.adService.searchUserAds(this.username).subscribe((ads) => {
