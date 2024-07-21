@@ -1,11 +1,11 @@
 .ads-container {
-  border: 1px solid #ddd; /* Light grey border */
-  padding: 20px; /* Add padding inside the container */
-  margin: 20px auto; /* Center the container with auto margins */
-  max-width: 600px; /* Constrain the width of the container */
-  border-radius: 8px; /* Add rounded corners */
-  background-color: #fff; /* White background for better contrast */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Remove default list styling and padding */
@@ -16,47 +16,47 @@
 }
 
 .ad-box {
-  border: 1px solid #ddd; /* Light grey border */
-  padding: 15px; /* Add more padding for better spacing */
-  margin: 15px 0; /* Add more margin for better separation between ads */
-  border-radius: 8px; /* Add rounded corners */
-  background-color: #f7f7f7; /* Light background color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+border: 1px solid #ddd;
+padding: 15px;
+margin: 15px 0;
+border-radius: 8px;
+background-color: #f7f7f7;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .ad-box p {
-  margin: 5px 0; /* Add margin between paragraphs */
-  font-size: 16px; /* Set a comfortable font size */
-  color: #333; /* Dark grey text color for better readability */
+margin: 5px 0;
+font-size: 16px;
+color: #333;
 }
 
 .ad-date {
-  font-weight: bold; /* Make date bold */
-  font-size: 18px; /* Slightly larger font size for date */
+font-weight: bold;
+font-size: 18px;
 }
 
 .ad-route {
-  font-size: 16px; /* Comfortable font size for route */
-  color: #555; /* Medium grey text color for route */
+font-size: 16px;
+color: #555;
 }
 
 .ad-car {
-  font-size: 14px; /* Smaller font size for car */
-  color: #777; /* Lighter grey text color for car */
-  margin-top: 5px; /* Add some margin above car information */
+font-size: 14px;
+color: #777;
+margin-top: 5px;
 }
 
 button {
-  background-color: #007bff; /* Blue background color */
-  color: white; /* White text color */
-  padding: 10px 20px; /* Padding for button */
-  border: none; /* Remove border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size for button */
-  margin-bottom: 20px; /* Margin below button */
+background-color: #007bff;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+margin-top: 10px;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+background-color: #0056b3;
 }

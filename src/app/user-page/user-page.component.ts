@@ -48,7 +48,13 @@ export class UserPageComponent {
   getUserAds() {
     this.adsSignal = this.adService.getAdsSignal();
     this.adService.searchUserAds(this.username).subscribe((ads) => {
-      this.userAds = ads;
+      this.userAds = []
+      ads.forEach((ad) => {
+        ad.isBooking = false;
+        ad.isBooked = false;
+        ad.isPublished = true;
+        this.userAds.push(ad)
+      });
     });
   }
 
@@ -60,6 +66,9 @@ export class UserPageComponent {
     this.adService.searchUserBookings(this.username).subscribe((bookings) => {
       this.userBookings = []
       bookings.forEach((booking) => {
+        booking.ad.isBooking = true;
+        booking.ad.isBooked = true;
+        booking.ad.isPublished = false;
         this.userBookings.push(booking.ad);
       });
     });

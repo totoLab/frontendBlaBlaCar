@@ -8,6 +8,15 @@
           {{ ad["departureCity"] }} {{ ad["departureTime"] }} &rarr; {{ ad["arrivalCity"] }} {{ ad["arrivalTime"] }}
         </p>
         <p class="ad-car">{{ ad["car"] }}</p>
+        <div *ngIf="ad.isPublished">
+          <button>Remove ad</button>
+        </div>
+        <div *ngIf="!ad.isPublished && !ad.isBooking && !ad.isBooked">
+          <button>Book a ride</button>
+        </div>
+        <div *ngIf="ad.isBooking && ad.isBooked">
+          <button>Remove booking</button>
+        </div>
       </li>
     </ul>
   </div>

@@ -1,3 +1,5 @@
+import { User } from "./User"
+
 export interface Ad {
     id: number
     departureCity: string
@@ -7,4 +9,9 @@ export interface Ad {
     date: Date
     car: string
     twoBackSeats: boolean
+    publisher: User
+    
+    isBooking: boolean
+    isBooked: boolean
+    isPublished: boolean
 }
