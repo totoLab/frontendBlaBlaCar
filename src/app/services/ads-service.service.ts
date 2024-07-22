@@ -112,4 +112,28 @@ export class AdService {
     })
     return bookingMsgObserver;
   }
+
+  // utils
+
+  citiesObserver!:Observable<{ departureCities: String[], arrivalCities: String[] }>;
+  departureCitiesSignal: WritableSignal<String[]> = signal([]);
+  arrivalCitiesSignal: WritableSignal<String[]> = signal([]);
+
+  getDepartureCitiesSignal(): WritableSignal<String[]> {
+    return this.departureCitiesSignal;
+  }
+
+  getArrivalCitiesSignal() {
+    return this.arrivalCitiesSignal;
+  }
+
+  getCities() {
+    const citiesObserver = this.http.get<{ departureCities: String[], arrivalCities: String[] }>(`${this.apiUrl}/ads/cities`);
+    citiesObserver.subscribe((response) => {
+      this.departureCitiesSignal.set(response["departureCities"]);
+      this.arrivalCitiesSignal.set(response["arrivalCities"]);
+    });
+    return citiesObserver;
+  }
+
 }

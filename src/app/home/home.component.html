@@ -5,18 +5,28 @@
     <form #searchForm="ngForm" (ngSubmit)="searchAds(searchForm)" class="search-form">
       <div class="form-group">
         <label for="departureCity">Departure City:</label>
-        <input type="text" id="departureCity" name="departureCity" ngModel>
+        <select id="departureCity" name="departureCity" ngModel>
+          <option disabled value="null">Select departure city</option>
+          <option *ngFor="let city of departureCitiesSignal()" [value]="city">
+             {{ city }}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="arrivalCity">Arrival City:</label>
-        <input type="text" id="arrivalCity" name="arrivalCity" ngModel>
+        <select id="arrivalCity" name="arrivalCity" ngModel>
+          <option disabled value="null">Select arrival city</option>
+          <option *ngFor="let city of arrivalCitiesSignal()" [value]="city">
+             {{ city }}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="date">Departure Date:</label>
         <input type="date" id="date" name="date" ngModel>
       </div>
       <div class="form-group checkbox-group">
-        <label for="twoBackSeats">twoBackSeats:</label>
+        <label for="twoBackSeats">Two Back Seats:</label>
         <input type="checkbox" id="twoBackSeats" name="twoBackSeats" ngModel>
       </div>
       <button type="submit" class="btn">Search</button>
