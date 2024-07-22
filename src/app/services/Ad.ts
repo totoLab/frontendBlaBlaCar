@@ -8,6 +8,8 @@ export interface Ad {
     arrivalTime: Date
     date: Date
     car: string
+    bookedSeats: number
+    maxSeats: number
     twoBackSeats: boolean
     publisher: User
     
