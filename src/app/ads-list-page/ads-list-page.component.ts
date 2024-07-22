@@ -11,12 +11,12 @@ import { Ad } from '../services/Ad';
 export class AdsListPageComponent {
   title = 'Available ads'
   adsSignal! : WritableSignal<Ad[]>;
-  ads!: Ad[];
   
-  constructor(private adService: AdService) {}
+  constructor(private adService: AdService) {
+    this.adsSignal = adService.getAdsSignal();
+  }
 
   ngOnInit() {
-    this.ads = []
     this.update()
   }
   
@@ -25,11 +25,7 @@ export class AdsListPageComponent {
   }
   
   update() {
-    this.adsSignal = this.adService.getAdsSignal();
     const searchData = this.adService.getSearchData();
-    
-    this.adService.searchAds(searchData).subscribe((ads) => {
-      this.ads = ads;
-    });
+    this.adService.searchAds(searchData);
   }
 }
