@@ -19,13 +19,13 @@
               <span class="time">{{ ad["arrivalTime"] }}</span>
             </div>
           </div>
-          <div *ngIf="ad.isPublished">
+          <div *ngIf="ad.isPublishedOrBooking">
             <button>Remove ad</button>
           </div>
-          <div *ngIf="!ad.isPublished && !ad.isBooking && !ad.isBooked">
+          <div *ngIf="!ad.isPublishedOrBooking && !ad.isBooked">
             <button (click)="bookAd(ad)">Book a ride</button>
           </div>
-          <div *ngIf="ad.isBooking && ad.isBooked">
+          <div *ngIf="!ad.isPublishedOrBooking && ad.isBooked">
             <button (click)="removeBooking(ad)">Remove booking</button>
           </div>
         </li>

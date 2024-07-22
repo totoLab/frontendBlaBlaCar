@@ -11,7 +11,6 @@ export interface Ad {
     twoBackSeats: boolean
     publisher: User
     
-    isBooking: boolean
     isBooked: boolean
-    isPublished: boolean
+    isPublishedOrBooking: boolean
 }

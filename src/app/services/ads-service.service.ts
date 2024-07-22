@@ -36,7 +36,12 @@ export class AdService {
     this.adsSignal.set([]);
     const adsObserver = this.http.post<Ad[]>(`${this.apiUrl}/ads`, searchData);
     adsObserver.subscribe((response) => {
-      this.adsSignal.set(response);
+      const ads = response;
+      ads.forEach((ad) => {
+        ad.isPublishedOrBooking = false;
+        ad.isBooked = false; // TODO check if is booked or
+      });
+      this.adsSignal.set(ads);
     });
     return adsObserver;
   }
@@ -45,7 +50,12 @@ export class AdService {
     this.adsSignal.set([]);
     const adsObserver = this.http.get<Ad[]>(`${this.apiUrl}/users/${username}/ads`);
     adsObserver.subscribe((response) => {
-      this.adsSignal.set(response);
+      const ads = response;
+      ads.forEach((ad) => {
+        ad.isPublishedOrBooking = true;
+        ad.isBooked = false;
+      });
+      this.adsSignal.set(ads);
     });
     return adsObserver;
   }
@@ -71,6 +81,10 @@ export class AdService {
       this.bookingsSignal.set(response);
 
       const ads = response.map(booking => booking.ad);
+      ads.forEach((ad) => {
+        ad.isPublishedOrBooking = false;
+        ad.isBooked = true;
+      });
       this.userBookedAdsSignal.set(ads)
     });
     return bookingsObserver;
