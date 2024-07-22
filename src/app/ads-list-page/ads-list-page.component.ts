@@ -2,6 +2,7 @@ import { Component, signal, WritableSignal } from '@angular/core';
 import { AdsListComponent } from '../ads-list/ads-list.component';
 import { AdService } from '../services/ads-service.service';
 import { Ad } from '../services/Ad';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-ads-list-page',
@@ -10,9 +11,9 @@ import { Ad } from '../services/Ad';
 })
 export class AdsListPageComponent {
   title = 'Available ads'
-  adsSignal! : WritableSignal<Ad[]>;
+  adsSignal: WritableSignal<Ad[]>;
   
-  constructor(private adService: AdService) {
+  constructor(private adService: AdService, private commonService: CommonService) {
     this.adsSignal = adService.getAdsSignal();
   }
 
@@ -21,7 +22,7 @@ export class AdsListPageComponent {
   }
   
   reload() {
-    this.update()
+    this.commonService.redirectFunction("home")
   }
   
   update() {

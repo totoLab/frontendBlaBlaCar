@@ -33,7 +33,6 @@ export class AdService {
   }
 
   searchAds(searchData: any): Observable<Ad[]> {
-    this.adsSignal.set([]);
     const adsObserver = this.http.post<Ad[]>(`${this.apiUrl}/ads`, searchData);
     adsObserver.subscribe((response) => {
       const ads = response;

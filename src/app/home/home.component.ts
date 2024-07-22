@@ -4,6 +4,7 @@ import { AdService } from '../services/ads-service.service';
 import { Observable } from 'rxjs';
 import { Ad } from '../services/Ad';
 import { Router } from '@angular/router';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent {
   departureCitiesSignal: WritableSignal<String[]>;
   arrivalCitiesSignal: WritableSignal<String[]>;
   
-  constructor(private adsService: AdService, private router: Router) {
+  constructor(private adsService: AdService, private commonService: CommonService) {
     this.departureCitiesSignal = adsService.getDepartureCitiesSignal();
     this.arrivalCitiesSignal = adsService.getArrivalCitiesSignal();
   }
@@ -32,12 +33,8 @@ export class HomeComponent {
     if (form.valid) {
       const searchData = form.value;
       this.adsService.setSearchData(searchData);
-      this.redirectFunction("ads");
+      this.commonService.redirectFunction("ads");
     }
-  }
-
-  redirectFunction(page: String) {
-    this.router.navigate(["/", page], {});
   }
 
 }
