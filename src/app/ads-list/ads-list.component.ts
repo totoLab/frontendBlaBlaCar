@@ -10,7 +10,9 @@ import { Ad } from '../services/Ad';
 })
 export class AdsListComponent {
 
-  constructor(private adsService: AdService) {}
+  constructor(private adsService: AdService) {
+    this.bookingMsgSignal = adsService.getBookingMsgSignal()
+  }
 
   @Input() 
     ads!: Ad[];
@@ -18,15 +20,16 @@ export class AdsListComponent {
   @Input()
     title!: String;
 
+
+  bookingMsgSignal!: WritableSignal<String>;
+  
   bookAd(ad: Ad) {
-    this.adsService.bookAd(ad).subscribe((response) => {
-      console.log(response);
-    })
+    this.adsService.bookAd(ad);
+    console.log(this.bookingMsgSignal)
   }
 
   removeBooking(ad: Ad) {
-    this.adsService.removeBooking(ad).subscribe((response) => {
-      console.log(response);
-    })
+    this.adsService.removeBooking(ad);
+    console.log(this.bookingMsgSignal)
   }
 }

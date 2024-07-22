@@ -23,10 +23,10 @@
             <button>Remove ad</button>
           </div>
           <div *ngIf="!ad.isPublished && !ad.isBooking && !ad.isBooked">
-            <button>Book a ride</button>
+            <button (click)="bookAd(ad)">Book a ride</button>
           </div>
           <div *ngIf="ad.isBooking && ad.isBooked">
-            <button>Remove booking</button>
+            <button (click)="removeBooking(ad)">Remove booking</button>
           </div>
         </li>
       </ul>
