@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ad } from './Ad';
+import { User } from './User';
 import { Booking } from './Booking';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { Booking } from './Booking';
 export class AdService {
   private apiUrl = 'http://localhost:8081';
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usersService: UsersService) { }
   
   // Ads related
   
@@ -64,5 +66,28 @@ export class AdService {
       this.bookingsSignal.set(response);
     });
     return bookingsObserver;
+  }
+
+  bookingMsgObserver!:Observable<String>;
+  bookingMsgSignal!: WritableSignal<String>;
+
+  getBookingMsgSignal():WritableSignal<String> {
+    return this.bookingMsgSignal;
+  }
+
+  bookAd(ad: Ad) {
+    const bookingMsgObserver = this.http.post<any>(`${this.apiUrl}/ads/${ad.id}/bookings/new`, {});
+    bookingMsgObserver.subscribe((response) => {
+      this.bookingMsgSignal.set(response);
+    })
+    return bookingMsgObserver;
+  }
+
+  removeBooking(ad: Ad) {
+    const bookingMsgObserver = this.http.post<any>(`${this.apiUrl}/ads/${ad.id}/bookings/cancel`, {});
+    bookingMsgObserver.subscribe((response) => {
+      this.bookingMsgSignal.set(response);
+    })
+    return bookingMsgObserver;
   }
 }

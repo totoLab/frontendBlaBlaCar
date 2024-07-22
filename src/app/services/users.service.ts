@@ -14,7 +14,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  searchUser(username: string): Observable<User> {
+  searchUser(username: String): Observable<User> {
     const userObservable = this.http.get<User>(`${this.apiUrl}/users/${username}`);
     userObservable.subscribe((response) => {
       this.userSubject.next(response);
