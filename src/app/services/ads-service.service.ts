@@ -54,9 +54,14 @@ export class AdService {
 
   bookingsObserver!:Observable<Booking[]>
   bookingsSignal: WritableSignal<Booking[]> = signal([]);
+  userBookedAdsSignal: WritableSignal<Ad[]> = signal([]);
 
   getBookingsSignal(): WritableSignal<Booking[]> {
     return this.bookingsSignal;
+  }
+
+  getuserBookedAdsSignal(): WritableSignal<Ad[]> {
+    return this.userBookedAdsSignal;
   }
 
   searchUserBookings(username: any): Observable<Booking[]> {
@@ -64,6 +69,9 @@ export class AdService {
     const bookingsObserver = this.http.get<Booking[]>(`${this.apiUrl}/users/${username}/bookings`);
     bookingsObserver.subscribe((response) => {
       this.bookingsSignal.set(response);
+
+      const ads = response.map(booking => booking.ad);
+      this.userBookedAdsSignal.set(ads)
     });
     return bookingsObserver;
   }

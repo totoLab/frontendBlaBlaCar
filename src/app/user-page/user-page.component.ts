@@ -20,19 +20,24 @@ export class UserPageComponent {
     this.route.paramMap.subscribe(param => {
       this.username = param.get('username');
     });
+
+
   }
 
   usersSignal!: WritableSignal<User>;
   user!: User;
   
   ngOnInit() {
-    this.getUserInfo()
-    this.getUserAds()
-    this.getUserBookings();
+    this.adsSignal = this.adService.getAdsSignal();
+    this.userBookedAdsSignal = this.adService.getuserBookedAdsSignal();
+    
+    this.reload()
   }
   
   reload() {
-    this.ngOnInit()
+    this.getUserInfo()
+    this.getUserAds()
+    this.getuserBookedAds();
   }
   
   getUserInfo() {
@@ -44,33 +49,13 @@ export class UserPageComponent {
   
   publishedTitle = "Published by user"
   adsSignal! : WritableSignal<Ad[]>;
-  userAds!: Ad[];
   getUserAds() {
-    this.adsSignal = this.adService.getAdsSignal();
-    this.adService.searchUserAds(this.username).subscribe((ads) => {
-      this.userAds = []
-      ads.forEach((ad) => {
-        ad.isBooking = false;
-        ad.isBooked = false;
-        ad.isPublished = true;
-        this.userAds.push(ad)
-      });
-    });
+    this.adService.searchUserAds(this.username);
   }
 
   bookedTitle = 'Booked by user'
-  bookingsSignal! : WritableSignal<Booking[]>;
-  userBookings!: Ad[];
-  getUserBookings() {
-    this.bookingsSignal = this.adService.getBookingsSignal();
-    this.adService.searchUserBookings(this.username).subscribe((bookings) => {
-      this.userBookings = []
-      bookings.forEach((booking) => {
-        booking.ad.isBooking = true;
-        booking.ad.isBooked = true;
-        booking.ad.isPublished = false;
-        this.userBookings.push(booking.ad);
-      });
-    });
+  userBookedAdsSignal! : WritableSignal<Ad[]>;
+  getuserBookedAds() {
+    this.adService.searchUserBookings(this.username);
   }
 }
