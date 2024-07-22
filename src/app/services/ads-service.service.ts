@@ -32,16 +32,37 @@ export class AdService {
     return this.searchData
   }
 
-  searchAds(searchData: any): Observable<Ad[]> {
+  searchAds(searchData: any, username: String): Observable<Ad[]> {
     const adsObserver = this.http.post<Ad[]>(`${this.apiUrl}/ads`, searchData);
     adsObserver.subscribe((response) => {
       const ads = response;
+      this.searchUserBookings(username);
+      const bookings = this.userBookedAdsSignal();
+      console.log('Bookings:', bookings);
+
       ads.forEach((ad) => {
         ad.isPublishedOrBooking = false;
-        ad.isBooked = false; // TODO check if is booked or
+  
+        ad.isBooked = bookings.some((userAd) => {
+          return (
+            userAd.departureCity === ad.departureCity &&
+            userAd.arrivalCity === ad.arrivalCity &&
+            userAd.departureTime === ad.departureTime &&
+            userAd.arrivalTime === ad.arrivalTime &&
+            userAd.date === ad.date &&
+            userAd.twoBackSeats === ad.twoBackSeats
+          );
+        });
       });
+  
+      console.log('Updated Ads:', ads);
       this.adsSignal.set(ads);
+    },
+    (error) => {
+      // Handle any errors
+      console.error('Error fetching ads:', error);
     });
+  
     return adsObserver;
   }
 
