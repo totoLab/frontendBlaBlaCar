@@ -91,7 +91,7 @@ export class AdService {
   }
 
   bookingMsgObserver!:Observable<String>;
-  bookingMsgSignal!: WritableSignal<String>;
+  bookingMsgSignal: WritableSignal<String> = signal("");
 
   getBookingMsgSignal():WritableSignal<String> {
     return this.bookingMsgSignal;
