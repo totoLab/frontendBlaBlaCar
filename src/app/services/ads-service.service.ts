@@ -38,7 +38,6 @@ export class AdService {
       const ads = response;
       this.searchUserBookings(username);
       const bookings = this.userBookedAdsSignal();
-      console.log('Bookings:', bookings);
 
       ads.forEach((ad) => {
         ad.isPublishedOrBooking = false;
@@ -55,7 +54,6 @@ export class AdService {
         });
       });
   
-      console.log('Updated Ads:', ads);
       this.adsSignal.set(ads);
     },
     (error) => {
@@ -84,7 +82,7 @@ export class AdService {
   publishAd(ad: Ad): Observable<String> {
     const publishedAdObserver = this.http.post<String>(`${this.apiUrl}/ads/ad`, ad)
     publishedAdObserver.subscribe((response) => {
-      console.log("Published ad: " + response);
+      this.stringMsgSignal.set(response)
     })
     return publishedAdObserver;
   }
@@ -92,7 +90,7 @@ export class AdService {
   removeAd(ad: Ad): Observable<String> {
     const removeAdObserver = this.http.post<String>(`${this.apiUrl}/ads/${ad.id}/delete`, {});
     removeAdObserver.subscribe((response) => {
-      console.log(`Removing ad ${ad.id}: ` + response);
+      this.stringMsgSignal.set(response)
     });
     return removeAdObserver;
   }
@@ -128,16 +126,11 @@ export class AdService {
   }
 
   bookingMsgObserver!:Observable<String>;
-  bookingMsgSignal: WritableSignal<String> = signal("");
-
-  getBookingMsgSignal():WritableSignal<String> {
-    return this.bookingMsgSignal;
-  }
 
   bookAd(ad: Ad) {
     const bookingMsgObserver = this.http.post<any>(`${this.apiUrl}/ads/${ad.id}/bookings/new`, {});
     bookingMsgObserver.subscribe((response) => {
-      this.bookingMsgSignal.set(response);
+      this.stringMsgSignal.set(response);
     })
     return bookingMsgObserver;
   }
@@ -145,12 +138,18 @@ export class AdService {
   removeBooking(ad: Ad) {
     const bookingMsgObserver = this.http.post<any>(`${this.apiUrl}/ads/${ad.id}/bookings/cancel`, {});
     bookingMsgObserver.subscribe((response) => {
-      this.bookingMsgSignal.set(response);
+      this.stringMsgSignal.set(response);
     })
     return bookingMsgObserver;
   }
 
   // utils
+
+  stringMsgSignal: WritableSignal<String> = signal("");
+
+  getStringMsgSignal():WritableSignal<String> {
+    return this.stringMsgSignal;
+  }
 
   citiesObserver!:Observable<{ departureCities: String[], arrivalCities: String[] }>;
   departureCitiesSignal: WritableSignal<String[]> = signal([]);

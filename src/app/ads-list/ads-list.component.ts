@@ -11,7 +11,7 @@ import { Ad } from '../services/Ad';
 export class AdsListComponent {
 
   constructor(private adsService: AdService) {
-    this.bookingMsgSignal = adsService.getBookingMsgSignal()
+    this.stringMsgSignal = adsService.getStringMsgSignal()
   }
 
   @Input() 
@@ -20,21 +20,20 @@ export class AdsListComponent {
   @Input()
     title!: String;
 
-
-  bookingMsgSignal!: WritableSignal<String>;
+  stringMsgSignal!: WritableSignal<String>;
   
   removeAd(ad: Ad) {
     this.adsService.removeAd(ad);
-    console.log(this.bookingMsgSignal);
+    console.log(`Removing ad ${ad.id}: ${this.stringMsgSignal}`);
   }
 
   bookAd(ad: Ad) {
     this.adsService.bookAd(ad);
-    console.log(this.bookingMsgSignal)
+    console.log(`Booking ad ${ad.id}: ${this.stringMsgSignal}`);
   }
 
   removeBooking(ad: Ad) {
     this.adsService.removeBooking(ad);
-    console.log(this.bookingMsgSignal)
+    console.log(`Unbooking ad ${ad.id}: ${this.stringMsgSignal}`);
   }
 }

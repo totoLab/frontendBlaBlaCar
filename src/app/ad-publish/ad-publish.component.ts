@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, WritableSignal } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AdService } from '../services/ads-service.service';
 import { CommonService } from '../services/common.service';
@@ -10,9 +10,14 @@ import { CommonService } from '../services/common.service';
 })
 export class AdPublishComponent {
 
-  constructor(private adsService: AdService, private commonService: CommonService) {}
+  constructor(private adsService: AdService, private commonService: CommonService) {
+    this.stringMsgSignal = adsService.getStringMsgSignal()
+  }
 
+  stringMsgSignal!: WritableSignal<String>;
+  
   publish(form: NgForm) {
     this.adsService.publishAd(form.value)
+    console.log("Published ad: " + this.stringMsgSignal);
   }
 }
