@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserPageComponent } from './user-page/user-page.component';
 import { AdPublishComponent } from './ad-publish/ad-publish.component';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, AdPublishComponent],
@@ -22,7 +23,7 @@ import { AdPublishComponent } from './ad-publish/ad-publish.component';
     CommonModule,
     FormsModule
   ],
-  providers: [{ provide: AdService, useClass: AdService }],
+  providers: [AdService, CommonService],
   bootstrap: [AppComponent]
 })
 

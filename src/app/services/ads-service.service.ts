@@ -5,14 +5,17 @@ import { Ad } from './Ad';
 import { User } from './User';
 import { Booking } from './Booking';
 import { UsersService } from './users.service';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdService {
-  private apiUrl = 'http://localhost:8081';
   
-  constructor(private http: HttpClient, private usersService: UsersService) { }
+  private apiUrl: String;
+  constructor(private http: HttpClient, private usersService: UsersService, private commonService: CommonService) { 
+    this.apiUrl = this.commonService.getApiUrl();
+  }
   
   // Ads related
   

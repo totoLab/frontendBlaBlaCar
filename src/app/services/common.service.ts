@@ -11,4 +11,8 @@ export class CommonService {
   redirectFunction(page: String) {
     this.router.navigate(["/", page], {});
   }
+
+  getApiUrl() {
+    return 'http://localhost:8081'
+  }
 }
