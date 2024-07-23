@@ -9,6 +9,7 @@ import { DummyComponent } from './dummy/dummy.component';
 import { AdPublishComponent } from './ad-publish/ad-publish.component';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: 'home'},
     { path: 'home', pathMatch: 'full', component: HomeComponent },
     { path: 'ads', pathMatch: 'full', component: AdsListPageComponent,
       // canActivate: [authGuard]

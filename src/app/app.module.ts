@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -13,6 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { UserPageComponent } from './user-page/user-page.component';
 import { AdPublishComponent } from './ad-publish/ad-publish.component';
 import { CommonService } from './services/common.service';
+import Keycloak from 'keycloak-js';
+import { KeycloakService } from './services/keycloak.service';
+
+export function kcFactory(kcService: KeycloakService) {
+  return () => kcService.init()
+}
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, AdPublishComponent],
@@ -23,7 +29,14 @@ import { CommonService } from './services/common.service';
     CommonModule,
     FormsModule
   ],
-  providers: [AdService, CommonService],
+  providers: [AdService, CommonService, 
+    {
+      provide: APP_INITIALIZER,
+      deps: [KeycloakService],
+      useFactory: kcFactory,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 
