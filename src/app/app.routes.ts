@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AdsListPageComponent } from './ads-list-page/ads-list-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { DummyComponent } from './dummy/dummy.component';
+import { AdPublishComponent } from './ad-publish/ad-publish.component';
 
 const routes: Routes = [
     { path: 'home', pathMatch: 'full', component: HomeComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
         }
       ]
     },
-
+    { path: 'publish', pathMatch: 'full', component: AdPublishComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

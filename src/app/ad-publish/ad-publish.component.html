@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div>
+  <form #publishForm="ngForm" (ngSubmit)="publish(publishForm)" class="publish-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="departureCity">Departure City:</label>
+        <input type="text" id="departureCity" name="departureCity" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="departureTime">Departure Time:</label>
+        <input type="time" id="departureTime" name="departureTime" ngModel>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="arrivalCity">Arrival City:</label>
+        <input type="text" id="arrivalCity" name="arrivalCity" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="arrivalTime">Arrival Time:</label>
+        <input type="time" id="arrivalTime" name="arrivalTime" ngModel>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="date">Departure Date:</label>
+        <input type="date" id="date" name="date" ngModel>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="car">Car:</label>
+        <input type="text" id="car" name="car" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="maxSeats">Max Seats:</label>
+        <input type="number" id="maxSeats" name="maxSeats" ngModel>
+      </div>
+      <div class="form-group checkbox-group">
+        <label for="twoBackSeats">Two Back Seats:</label>
+        <input type="checkbox" id="twoBackSeats" name="twoBackSeats" ngModel>
+      </div>
+    </div>
+    <button type="submit" class="btn">Publish</button>
+  </form>
+</div>

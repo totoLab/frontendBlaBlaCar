@@ -1,0 +1,71 @@
+/* General form styling */
+.publish-form {
+    max-width: 600px; /* Adjusted to ensure proper alignment */
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Flex container for rows */
+  .form-row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 15px;
+  }
+  
+  .half-width {
+    flex: 1 1 calc(50% - 20px);
+  }
+  
+  .publish-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .publish-form input[type="text"],
+  .publish-form input[type="time"],
+  .publish-form input[type="date"],
+  .publish-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .publish-form input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .publish-form .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .publish-form .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+  }
+  
