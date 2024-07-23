@@ -20,7 +20,7 @@
             </div>
           </div>
           <div *ngIf="ad.isPublishedOrBooking; else bookingControls">
-            <button>Remove ad</button>
+            <button (click)="removeAd(ad)">Remove ad</button>
           </div>
           <ng-template #bookingControls>
             <div *ngIf="!ad.isBooked; else remove">

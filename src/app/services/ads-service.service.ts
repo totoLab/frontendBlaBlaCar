@@ -89,6 +89,14 @@ export class AdService {
     return publishedAdObserver;
   }
 
+  removeAd(ad: Ad): Observable<String> {
+    const removeAdObserver = this.http.post<String>(`${this.apiUrl}/ads/${ad.id}/delete`, {});
+    removeAdObserver.subscribe((response) => {
+      console.log(`Removing ad ${ad.id}: ` + response);
+    });
+    return removeAdObserver;
+  }
+
   // Bookings related
 
   bookingsObserver!:Observable<Booking[]>

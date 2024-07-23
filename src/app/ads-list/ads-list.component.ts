@@ -23,6 +23,11 @@ export class AdsListComponent {
 
   bookingMsgSignal!: WritableSignal<String>;
   
+  removeAd(ad: Ad) {
+    this.adsService.removeAd(ad);
+    console.log(this.bookingMsgSignal);
+  }
+
   bookAd(ad: Ad) {
     this.adsService.bookAd(ad);
     console.log(this.bookingMsgSignal)
