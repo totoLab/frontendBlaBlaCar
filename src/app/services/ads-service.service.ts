@@ -80,6 +80,15 @@ export class AdService {
     return adsObserver;
   }
 
+
+  publishAd(ad: Ad): Observable<String> {
+    const publishedAdObserver = this.http.post<String>(`${this.apiUrl}/ads/ad`, ad)
+    publishedAdObserver.subscribe((response) => {
+      console.log("Published ad: " + response);
+    })
+    return publishedAdObserver;
+  }
+
   // Bookings related
 
   bookingsObserver!:Observable<Booking[]>

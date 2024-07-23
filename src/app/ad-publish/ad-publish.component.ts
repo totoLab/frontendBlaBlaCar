@@ -10,12 +10,9 @@ import { CommonService } from '../services/common.service';
 })
 export class AdPublishComponent {
 
-  constructor(private adsService: AdService, private commonService: CommonService) {
-    //this.departureCitiesSignal = adsService.getDepartureCitiesSignal();
-    //this.arrivalCitiesSignal = adsService.getArrivalCitiesSignal();
-  }
+  constructor(private adsService: AdService, private commonService: CommonService) {}
 
   publish(form: NgForm) {
-
+    this.adsService.publishAd(form.value)
   }
 }
