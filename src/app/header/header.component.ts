@@ -11,12 +11,13 @@ import { KeycloakService } from '../services/keycloak.service';
 export class HeaderComponent {
   constructor(private usersServices: UsersService, private keycloakService: KeycloakService) {}
 
-  isAuthenticated: boolean = true; 
+  isAuthenticated: Boolean | undefined; 
   username: String = '';
   
-  ngOnInit() {
+  async ngOnInit() {
+    this.isAuthenticated = await this.keycloakService.keycloak.authenticated;
     if (this.isAuthenticated) {
-      this.username = this.usersServices.currentUser()
+      this.username = this.usersServices.currentUser();
     }
   }
 
