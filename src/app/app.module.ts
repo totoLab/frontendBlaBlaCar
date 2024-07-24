@@ -15,7 +15,6 @@ import { AdPublishComponent } from './ad-publish/ad-publish.component';
 import { CommonService } from './services/common.service';
 import Keycloak from 'keycloak-js';
 import { KeycloakService } from './services/keycloak.service';
-import { UsersComponentComponent } from './users-component/users-component.component';
 import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
 
 export function kcFactory(kcService: KeycloakService) {
@@ -23,7 +22,7 @@ export function kcFactory(kcService: KeycloakService) {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, UsersComponentComponent, AdPublishComponent],
+  declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, AdPublishComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
