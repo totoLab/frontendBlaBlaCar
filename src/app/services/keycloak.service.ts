@@ -30,21 +30,21 @@ export class KeycloakService {
 
   async init() {
     console.log("Authenticating the user...")
-    const authenticated = await this.keycloak?.init({
+    const authenticated = await this.keycloak.init({
       onLoad: 'login-required'
     });
     if (authenticated) {
       console.log("User authenticated")
       this._profile = (await this.keycloak?.loadUserProfile()) as UserProfile;
-      this._profile.token = this.keycloak?.token;
+      this._profile.token = this.keycloak?.token || '';
     }
   }
 
   login() {
-    return this.keycloak?.login();
+    return this.keycloak.login();
   }
 
   logout() {
-    this.keycloak?.logout()
+    return this.keycloak.logout();
   }
 }

@@ -12,27 +12,21 @@ import { UsersComponentComponent } from './users-component/users-component.compo
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'home'},
-    { path: 'home', pathMatch: 'full', component: HomeComponent },
+    { path: 'home', pathMatch: 'full', component: HomeComponent,
+      canActivate: [authGuard]
+    },
     { path: 'ads', pathMatch: 'full', component: AdsListPageComponent,
       canActivate: [authGuard]
     },
     { path: 'users', pathMatch: 'full', component: UsersComponentComponent,
       canActivate: [authGuard]
      },
-    { path: 'users/:username',
-      children: [
-        {
-          path: '',
-          component: UserPageComponent
-        },
-        {
-          path: 'bookings',
-          component: DummyComponent
-        }
-      ],
+    { path: 'users/:username', pathMatch: 'full', component: UserPageComponent,
       canActivate: [authGuard]
     },
-    { path: 'publish', pathMatch: 'full', component: AdPublishComponent },
+    { path: 'publish', pathMatch: 'full', component: AdPublishComponent,
+      canActivate: [authGuard]
+     },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
