@@ -11,8 +11,8 @@
       <ng-container *ngIf="isAuthenticated; else notAuthenticated">
         <a href="/users/{{username}}">
           <img src="assets/propic.png" alt="Profile Photo" class="profile-photo"/>
-          <button class="auth-button" (click)="logout()">Logout</button>
         </a>
+        <button class="auth-button" (click)="logout()">Logout</button>
       </ng-container>
       <ng-template #notAuthenticated>
         <button class="auth-button" (click)="login()">Login</button>
