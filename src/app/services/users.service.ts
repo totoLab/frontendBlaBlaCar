@@ -42,4 +42,18 @@ export class UsersService {
     });
     return usersObservable;
   }
+
+  stringMsgSignal: WritableSignal<String> = signal("");
+
+  getStringMsgSignal() {
+    return this.stringMsgSignal;
+  }
+
+  deleteUser() {
+    const deleteObservable = this.http.post<any>(`${this.apiUrl}/users/${this.currentUser()}/delete`, {});
+    deleteObservable.subscribe((response) => {
+      this.stringMsgSignal.set(response);
+    });
+    return deleteObservable;
+  }
 }
