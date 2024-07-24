@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AdService } from './services/ads-service.service';
 import { AppRoutingModule } from './app.routes';
@@ -15,13 +15,15 @@ import { AdPublishComponent } from './ad-publish/ad-publish.component';
 import { CommonService } from './services/common.service';
 import Keycloak from 'keycloak-js';
 import { KeycloakService } from './services/keycloak.service';
+import { UsersComponentComponent } from './users-component/users-component.component';
+import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
 
 export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init()
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, AdPublishComponent],
+  declarations: [AppComponent, HomeComponent, AdsListPageComponent, AdsListComponent, HeaderComponent, UserPageComponent, UsersComponentComponent, AdPublishComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -35,7 +37,8 @@ export function kcFactory(kcService: KeycloakService) {
       deps: [KeycloakService],
       useFactory: kcFactory,
       multi: true
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

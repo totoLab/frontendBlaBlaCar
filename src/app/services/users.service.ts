@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, signal } from '@angular/core';
 import { User } from './User'
-import { Observable, Subject } from 'rxjs';
+import { Observable, single, Subject } from 'rxjs';
 import { CommonService } from './common.service';
 
 @Injectable({
@@ -28,5 +28,18 @@ export class UsersService {
   // modify when using auth
   currentUser(): String {
     return 'toto';
+  }
+
+  usersSignal: WritableSignal<User[]> = signal([]);
+  getUsersSignal() {
+    return this.usersSignal;
+  }
+
+  getUsers(): Observable<User[]>{
+    const usersObservable = this.http.get<User[]>(`${this.apiUrl}/users`);
+    usersObservable.subscribe((response) => {
+      this.usersSignal.set(response);
+    });
+    return usersObservable;
   }
 }
