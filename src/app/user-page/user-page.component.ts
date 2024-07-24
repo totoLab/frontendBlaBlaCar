@@ -64,4 +64,8 @@ export class UserPageComponent {
     this.usersService.deleteUser();
     console.log(this.usersService.getStringMsgSignal());
   }
+
+  userMatches() {
+    this.usersService.currentUser() === this.user.username
+  }
 }
