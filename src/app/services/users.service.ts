@@ -3,6 +3,7 @@ import { Injectable, WritableSignal, signal } from '@angular/core';
 import { User } from './User'
 import { Observable, single, Subject } from 'rxjs';
 import { CommonService } from './common.service';
+import { KeycloakService } from './keycloak.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UsersService {
   user$ = this.userSubject.asObservable();
   
   apiUrl: String
-  constructor(private http: HttpClient, private commonService: CommonService) {
+  constructor(private http: HttpClient, private commonService: CommonService, private keycloakService: KeycloakService) {
     this.apiUrl = this.commonService.getApiUrl();
   }
 
@@ -25,9 +26,8 @@ export class UsersService {
     return userObservable;
   }
 
-  // modify when using auth
   currentUser(): String {
-    return 'toto';
+    return this.keycloakService.profile?.username!;
   }
 
   usersSignal: WritableSignal<User[]> = signal([]);
