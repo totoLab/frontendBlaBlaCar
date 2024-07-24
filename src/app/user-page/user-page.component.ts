@@ -66,6 +66,6 @@ export class UserPageComponent {
   }
 
   userMatches() {
-    this.usersService.currentUser() === this.user.username
+    return this.usersService.currentUser() === this.username;
   }
 }
