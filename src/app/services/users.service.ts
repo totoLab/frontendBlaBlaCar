@@ -9,10 +9,10 @@ import { KeycloakService } from './keycloak.service';
   providedIn: 'root'
 })
 export class UsersService {
-  
+
   private userSubject = new Subject<User>();
   user$ = this.userSubject.asObservable();
-  
+
   apiUrl: String
   constructor(private http: HttpClient, private commonService: CommonService, private keycloakService: KeycloakService) {
     this.apiUrl = this.commonService.getApiUrl();
@@ -50,7 +50,7 @@ export class UsersService {
   }
 
   deleteUser() {
-    const deleteObservable = this.http.post<any>(`${this.apiUrl}/users/${this.currentUser()}/delete`, {});
+    const deleteObservable = this.http.post<String>(`${this.apiUrl}/users/${this.currentUser()}/delete`, {});
     deleteObservable.subscribe((response) => {
       this.stringMsgSignal.set(response);
     });
