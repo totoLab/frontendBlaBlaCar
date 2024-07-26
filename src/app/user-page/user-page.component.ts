@@ -5,6 +5,7 @@ import { UsersService } from '../services/users.service';
 import { AdService } from '../services/ads-service.service';
 import { Ad } from '../services/Ad';
 import { Booking } from '../services/Booking';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-user-page',
@@ -16,7 +17,7 @@ export class UserPageComponent {
   username: any;
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private usersService: UsersService, private adService: AdService) { 
+    private usersService: UsersService, private adService: AdService, private commonService: CommonService) {
     this.route.paramMap.subscribe(param => {
       this.username = param.get('username');
     });
@@ -26,27 +27,27 @@ export class UserPageComponent {
 
   usersSignal!: WritableSignal<User>;
   user!: User;
-  
+
   ngOnInit() {
     this.adsSignal = this.adService.getAdsSignal();
     this.userBookedAdsSignal = this.adService.getuserBookedAdsSignal();
-    
+
     this.reload()
   }
-  
+
   reload() {
     this.getUserInfo()
     this.getUserAds()
     this.getuserBookedAds();
   }
-  
+
   getUserInfo() {
     this.usersService.user$.subscribe((user) => {
       this.user = user;
     });
     this.usersService.searchUser(this.username);
   }
-  
+
   publishedTitle = "Published by user"
   adsSignal! : WritableSignal<Ad[]>;
   getUserAds() {
@@ -57,5 +58,14 @@ export class UserPageComponent {
   userBookedAdsSignal! : WritableSignal<Ad[]>;
   getuserBookedAds() {
     this.adService.searchUserBookings(this.username);
+  }
+
+  deleteUser() {
+    this.usersService.deleteUser();
+    alert(`User deleted ${this.usersService.getStringMsgSignal()}, returning to login`);
+  }
+
+  userMatches() {
+    return this.usersService.currentUser() === this.username;
   }
 }

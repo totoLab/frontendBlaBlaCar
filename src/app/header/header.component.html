@@ -1,22 +1,19 @@
 <div class="header">
-    <div class="logo-container">
+  <div class="logo-container">
       <img src="assets/logo.png" alt="Site Logo" class="logo"/>
-    </div>
-    <a href="/home">
-      <div class="site-name">
-        <h1>BlaBlaCar site</h1>
-      </div>
-    </a>
-    <div class="auth-container">
+  </div>
+  <a href="/home" class="site-name">
+      <h1>BlaBlaCar site</h1>
+  </a>
+  <div class="auth-container">
       <ng-container *ngIf="isAuthenticated; else notAuthenticated">
-        <a href="/users/{{username}}">
-          <img src="assets/propic.png" alt="Profile Photo" class="profile-photo"/>
-        </a>
+          <a href="/users/{{username}}">
+              <img src="assets/propic.png" alt="Profile Photo" class="profile-photo"/>
+          </a>
+          <button class="auth-button" (click)="logout()">Logout</button>
       </ng-container>
       <ng-template #notAuthenticated>
-        <button class="auth-button" (click)="login()">Login</button>
-        <button class="auth-button" (click)="signup()">Signup</button>
+          <button class="auth-button" (click)="login()">Login</button>
       </ng-template>
-    </div>
+  </div>
 </div>
-  

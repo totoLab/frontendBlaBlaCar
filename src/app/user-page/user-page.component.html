@@ -1,15 +1,21 @@
 <app-header/>
 <h1>User page</h1>
 <div *ngIf="user; else notfound" class="user-container">
-      <h2>Ciao, {{user.username}}</h2>
-      <p>Name: {{user.name}}</p>
-      <p>Surname: {{user.surname}}</p>
-      <p>Email: {{user.email}}</p>
-      <app-ads-list id="published" [title]="publishedTitle" [ads]="adsSignal()"/>
-      <app-ads-list id="booked" [title]="bookedTitle" [ads]="userBookedAdsSignal()"/>
-    </div>
-    <ng-template #notfound>
-      <div class="notfound-container">
-        <p>Can't retrieve user data...</p>
-      </div>
-    </ng-template>
+  <h2>Ciao, {{user.username}}</h2>
+  <p>Name: {{user.name}}</p>
+  <p>Surname: {{user.surname}}</p>
+  <p>Email: {{user.email}}</p>
+  <div *ngIf="userMatches()">
+    <app-ads-list id="published" [title]="publishedTitle" [ads]="adsSignal()"/>
+    <app-ads-list id="booked" [title]="bookedTitle" [ads]="userBookedAdsSignal()"/>
+    <a href="/">  
+      <button class="delete" (click)="deleteUser()">Delete account</button>
+    </a>
+  </div>
+</div>
+<ng-template #notfound>
+  <div class="notfound-container">
+    <p>Can't retrieve user data...</p>
+  </div>
+</ng-template>
+
